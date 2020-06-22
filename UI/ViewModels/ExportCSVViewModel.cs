@@ -472,10 +472,14 @@ namespace UI.ViewModels
             XmlNodeList xnList = xmlDoc.SelectNodes("Phases/Phase");
             foreach (XmlNode xn in xnList)
             {
-                var revisions = xn["Revision"].SelectSingleNode("Issue").InnerText;
+                foreach(XmlNode xn1 in xn.SelectNodes("Revision"))
+                {
+                    var revisions = xn1["Issue"].InnerText;
+                    MessageBox.Show(revisions);
+
+                }
                 var nameofphase = xn.Attributes["Name"].InnerText;
                 MessageBox.Show(nameofphase);
-                MessageBox.Show(revisions);
             }
         }
         #endregion
