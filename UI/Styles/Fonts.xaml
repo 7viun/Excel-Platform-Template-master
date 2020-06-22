@@ -10,14 +10,19 @@
     <System:Double x:Key="SmallFontSize">9</System:Double>
     <System:Double x:Key="RegularFontSize">12</System:Double>
     <System:Double x:Key="LargeFontSize">14</System:Double>
-    <System:Double x:Key="ExtraLargeFontSize">16</System:Double>
+    <System:Double x:Key="ExtraLargeFontSize">25</System:Double>
     <!--Font Style-->
 
     <FontFamily x:Key="OpenSansLite">/Resources;Component/Fonts/OpenSans/#Open Sans Light</FontFamily>
     <FontFamily x:Key="OpenSans">/Resources;Component/Fonts/OpenSans/#Open Sans</FontFamily>
     <FontFamily x:Key="OpenSansExtraBold">/Resources;Component/Fonts/OpenSans/#Open Sans ExtraBold</FontFamily>
 
-
+    <!-- Text box Bold Style. -->
+    <Style TargetType="{x:Type TextBox}" x:Key="BoldTextBoxStyle">
+        <Setter Property="FontSize" Value="{StaticResource ExtraLargeFontSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource OpenSansExtraBold}"/>
+        <Setter Property="Foreground" Value="{StaticResource MainTextColor}"/>
+    </Style>
 
     <!-- Text block basic styles. -->
     <Style TargetType="{x:Type TextBlock}" x:Key="BaseTextBlockStyle">

@@ -121,6 +121,35 @@ namespace UI.ViewModels
 
             }
         }
+        private string _location;
+        public string Location
+        {
+            get
+            {
+                return _location;
+            }
+            set
+            {
+                _location = value;
+                OnPropertyChanged();
+
+            }
+        }
+        private string _doctype;
+        public string DocType
+        {
+            get
+            {
+                return _doctype;
+            }
+            set
+            {
+                _doctype = value;
+                OnPropertyChanged();
+
+            }
+        }
+
         #endregion
         #region ObservableCollection Collections
         private ObservableCollection<ViewSchedule> _element = new ObservableCollection<ViewSchedule>();
@@ -445,8 +474,8 @@ namespace UI.ViewModels
                             writer.WriteElementString("ID", "A");
                             writer.WriteElementString("Issue", "27/02/2012");
                             writer.WriteElementString("ProjectName", _projectname);
-                            writer.WriteElementString("Location", "District 9, HCM City");
-                            writer.WriteElementString("Title", "Drawing List");
+                            writer.WriteElementString("Location", _location);
+                            writer.WriteElementString("Title", _doctype);
                         writer.WriteEndElement();
                     writer.WriteEndElement();
                 writer.WriteEndElement();

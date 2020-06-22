@@ -61,22 +61,14 @@
       <HintPath>..\..\..\..\..\Program Files\Microsoft Office\Office16\ADDINS\Microsoft Power Query for Excel Integrated\bin\Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\XXX - Useful API\Microsoft.WindowsAPICodePack.dll</HintPath>
+      <HintPath>..\..\..\Useful API\Microsoft.WindowsAPICodePack.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack.Shell">
-      <HintPath>..\..\..\XXX - Useful API\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
-    </Reference>
-    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Debug2019'">
-      <HintPath>C:\Program Files\Autodesk\Revit 2019\RevitAPI.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\Useful API\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
     </Reference>
     <Reference Include="RevitAPI">
       <HintPath>C:\Program Files\Autodesk\Revit 2018\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Debug2019'">
-      <HintPath>C:\Program Files\Autodesk\Revit 2019\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Debug2018'">
