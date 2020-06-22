@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" 
+           Name="Artelia VN Add-ins Installer" 
+           Language="1033" 
+           Version="3.0.0.0" 
+           Manufacturer="Aviun" 
+           UpgradeCode="61868af1-7a5e-42dc-9182-40a4ebac5400">
+		<Package InstallerVersion="300" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes"/>
+
+		<Feature Id="ProductFeature" Title="Installer_Artelia" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+      <ComponentRef Id="CMP_addin"/>
+      <ComponentRef Id="APICodePack"/>
+      <ComponentRef Id="APICodePackShell"/>
+    </Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="CommonAppDataFolder">
+				<Directory Id="INSTALLFOLDER" Name="Artelia VN" />
+        <Directory Id="ASDK" Name="Autodesk">
+          <Directory Id="RVT" Name="Revit">
+            <Directory Id="ADDIN" Name="Addins">
+              <Directory Id="V2018" Name="2018"/>
+              <Directory Id="V2019" Name="2019"/>
+              <Directory Id="V2020" Name="2020"/>
+            </Directory>
+          </Directory>
+        </Directory>
+			</Directory>
+		</Directory>
+	</Fragment>
+  
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			 <Component Id="ProductComponent" Guid="d886eb80-fa02-46a9-b313-344b021cddef">
+         <File Source="$(var.Core.TargetPath)" />
+         <File Source="$(var.Main.TargetPath)" />
+         <File Source="$(var.Resources.TargetPath)" />
+         <File Source="$(var.UI.TargetPath)" />
+       </Component> 
+		</ComponentGroup>
+    
+    <DirectoryRef Id="V2018">
+      <Component Id="CMP_addin" Guid="4716F0FD-7E12-416B-8149-28DD8D904BB6">
+        <File Source="ArteliaVN.addin">
+          <CopyFile Id="CopyAddinFile1" DestinationDirectory="V2019"/>
+          <CopyFile Id="CopyAddinFile2" DestinationDirectory="V2020"/>
+        </File>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="APICodePack" Guid="00227495-5C2E-43DB-AC9E-37F6A513ECF7">
+        <File Source="Microsoft.WindowsAPICodePack.dll">
+        </File>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="APICodePackShell" Guid="EF194679-14A0-4916-AE91-6E43A8944C5D">
+        <File Source="Microsoft.WindowsAPICodePack.Shell.dll">
+        </File>
+      </Component>
+    </DirectoryRef>
+
+  </Fragment>
+</Wix>

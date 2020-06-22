@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:UI"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Colors.xaml" />
+        <ResourceDictionary Source="Fonts.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- Template style for flat button. -->
+    <Style x:Key="MainButton" TargetType="{x:Type Button}">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontFamily" Value="{StaticResource OpenSans}" />
+        <Setter Property="FontSize" Value="{StaticResource RegularFontSize}" />
+        <Setter Property="Foreground" Value="{StaticResource MainTextColor}" />
+    </Style>
+    
+</ResourceDictionary>

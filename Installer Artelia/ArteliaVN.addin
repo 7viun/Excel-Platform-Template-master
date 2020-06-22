@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>ARTELIA VN</Name>
+    <Assembly>C:\ProgramData\Artelia VN\Main.dll</Assembly>
+    <AddInId>6DB4DD37-592A-451A-B743-6D3B6F9DFF9C</AddInId>
+    <FullClassName>Main.Main</FullClassName>
+    <VendorId>Aviun</VendorId>
+    <Publisher>Aviun</Publisher>
+    <VendorDescription>ARTELIA VN</VendorDescription>
+  </AddIn>
+</RevitAddIns>

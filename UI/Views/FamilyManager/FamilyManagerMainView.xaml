@@ -1,0 +1,81 @@
+﻿<Window x:Class="UI.Views.FamilyManager.FamilyManagerMainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+        Width="400" Height="600" ResizeMode="NoResize">
+    <Window.Resources>
+        <!--<Style x:Key="myHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Visibility" Value="Collapsed" />
+        </Style>-->
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../App.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <DockPanel LastChildFill="True" Margin="2,2,6,2">
+                    <Button DockPanel.Dock="Left" Width="70" Height="25" x:Name="findPath" HorizontalAlignment="Center" Content="Browse" Command="{Binding FindPathCommand}"/>
+                    <TextBox Width="Auto" Height="25" IsReadOnly="True" Text="{Binding FilePath}"></TextBox>
+            </DockPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ListView SelectionMode="Extended" Margin="2" Grid.Row="1" Grid.Column="0" x:Name="viewScheduleListView" ItemsSource="{Binding listView}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="IsSelected" Value="{Binding selecteditem}"/>
+                        <Style.Resources>
+                            <SolidColorBrush x:Key="Item.SelectedActive.Background" Color="Red"/>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
+                        </Style.Resources>
+                        
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+                    <GridView>
+                        <!--ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}"-->
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox x:Name="is" IsEnabled="True" IsChecked="{Binding selecteditem}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding listname}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <DockPanel Grid.Column="1">
+                <StackPanel DockPanel.Dock="Top">
+                    <Button Margin="6" Padding="6" x:Name="FamilyPage" Content="Family"
+                    Command="{Binding FamilyBtnCommand}"/>
+                    <Button Margin="6" Padding="6" x:Name="PreferencePage" Content="Preference"
+                    Command="{Binding PreferencesBtnCommand}"/>
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
+                    <Image Width="120" Height="50" Source="/Resource;component/Images/Icons/Logo.Artelia.png" Margin="2,2,2,0" />
+                    <TextBlock TextWrapping="Wrap" 
+                               TextAlignment="Center" 
+                               HorizontalAlignment="Center" 
+                               Margin="0,2,2,2" Padding="2" 
+                               Foreground="#013459" 
+                               FontFamily="{StaticResource OpenSansLite}"
+                               Style="{StaticResource BaseTextBlockStyle}">6 Phung Khac Khoan Dakao-District 1</TextBlock>
+                </StackPanel>
+            </DockPanel>
+        </Grid>
+
+    </Grid>
+</Window>

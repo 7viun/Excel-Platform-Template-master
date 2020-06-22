@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+
+    <!--Artelia Colors-->
+    <Color x:Key="ArteliaBlue">#013459</Color>
+    <SolidColorBrush x:Key="MainTextColor" Color="{StaticResource ArteliaBlue}" />
+
+    <Color x:Key="ArteliaGreen">#75B94D</Color>
+    <SolidColorBrush x:Key="SecondTextColor" Color="{StaticResource ArteliaGreen}" />
+
+
+</ResourceDictionary>

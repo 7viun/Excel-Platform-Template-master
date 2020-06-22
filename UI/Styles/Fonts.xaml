@@ -1,0 +1,34 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:UI"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Colors.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <!--Font Size-->
+    <System:Double x:Key="SmallFontSize">9</System:Double>
+    <System:Double x:Key="RegularFontSize">12</System:Double>
+    <System:Double x:Key="LargeFontSize">14</System:Double>
+    <System:Double x:Key="ExtraLargeFontSize">16</System:Double>
+    <!--Font Style-->
+
+    <FontFamily x:Key="OpenSansLite">/Resources;Component/Fonts/OpenSans/#Open Sans Light</FontFamily>
+    <FontFamily x:Key="OpenSans">/Resources;Component/Fonts/OpenSans/#Open Sans</FontFamily>
+    <FontFamily x:Key="OpenSansExtraBold">/Resources;Component/Fonts/OpenSans/#Open Sans ExtraBold</FontFamily>
+
+
+
+    <!-- Text block basic styles. -->
+    <Style TargetType="{x:Type TextBlock}" x:Key="BaseTextBlockStyle">
+        <Setter Property="FontSize" Value="{StaticResource LargeFontSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource OpenSansExtraBold}"/>
+        <Setter Property="Foreground" Value="{StaticResource MainTextColor}"/>
+    </Style>
+    <!-- Label basic styles. -->
+    <Style TargetType="{x:Type Label}" x:Key="BaseLabelStyle">
+        <Setter Property="FontSize" Value="{StaticResource RegularFontSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource OpenSansExtraBold}"/>
+        <Setter Property="Foreground" Value="{StaticResource MainTextColor}"/>
+    </Style>
+</ResourceDictionary>
