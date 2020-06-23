@@ -2,6 +2,7 @@
 using System.Windows;
 using UI.Commands.ExportCSV;
 using UI.ViewModels;
+using Microsoft.Xaml.Behaviors;
 
 namespace UI.Views.ExportCSV
 {
@@ -15,6 +16,7 @@ namespace UI.Views.ExportCSV
         public ExportDrawingListMainView(ExportCSVCommand exportCSVCommand)
         {
             _exportCSVCommand = exportCSVCommand;
+            var x=CustomPropertyValueEditor.Element;
             InitializeComponent();
             DataContext = _exportCSVViewModel = new ExportCSVViewModel(_exportCSVCommand);
         }

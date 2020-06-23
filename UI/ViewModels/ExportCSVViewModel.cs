@@ -22,6 +22,9 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Xml;
 using Microsoft.Win32;
+using System.Windows.Controls;
+using Microsoft.Xaml.Behaviors.Core;
+using System.Windows.Media.Imaging;
 
 namespace UI.ViewModels
 {
@@ -34,6 +37,8 @@ namespace UI.ViewModels
         public ICommand FindPathCommand { get; set; }
         public ICommand SaveCommand { get; set; }
         public ICommand LoadCommand { get; set; }
+        public ICommand MouseDownCommand { get; set; }
+        public ICommand ChangeImageCommand { get; set; }
 
 
         #endregion
@@ -149,6 +154,20 @@ namespace UI.ViewModels
 
             }
         }
+        private string _imagelink;
+        public string ImageLink
+        {
+            get
+            {
+                return _imagelink;
+            }
+            set
+            {
+                _imagelink = value;
+                OnPropertyChanged();
+
+            }
+        }
 
         #endregion
         #region ObservableCollection Collections
@@ -177,6 +196,8 @@ namespace UI.ViewModels
             _app = _exportCSVCommand.app;
             _doc = _exportCSVCommand.doc;
             _projectname = "Amazon";
+            this.ChangeImageCommand = new ActionCommand(this.ChangeImage);
+            this.MouseDownCommand = new ActionCommand(this.SetGridFocus);
             LoadCommand = new RelayCommand(GetWebPage);
             SaveCommand = new RelayCommand(SaveToART);
             ExportCbndBtnCommand = new RelayCommand(ExportCbnButton, CanClickButton);
@@ -456,6 +477,30 @@ namespace UI.ViewModels
                 FilePath = path;
             }
         }
+        #region Set Grid to Focus, Carret out of Textbox when click in Main Grid
+        private void SetGridFocus(object obj)
+        {
+            Keyboard.ClearFocus();
+            //var mainWin = (System.Windows.Window)obj;
+            //mainWin.Focus();
+        }
+        #endregion
+        #region Change Image Source private method
+        private void ChangeImage(object obj)
+        {
+            //_imagelink = "/Resources;component/Images/Icons/sky.jpg";
+            var img = (Image)obj;
+            BitmapImage bitmapImage = new BitmapImage();
+            bitmapImage.UriSource = new Uri(@"../Resources; component/Images/Icons/sky.jpg");
+            img.Source = bitmapImage;
+            MessageBox.Show(bitmapImage.ToString());
+            //var img = (Image)obj;
+            //OpenFile();
+            //BitmapImage bitmapImage = new BitmapImage();
+            //bitmapImage.UriSource = new Uri(@"/Resources; component/Images/Icons/LookUpNoteblock.ico");
+            //img.Source = bitmapImage;
+        }
+        #endregion
         #region Private Save Command
         private void SaveToART()
         {

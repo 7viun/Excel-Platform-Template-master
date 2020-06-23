@@ -22,6 +22,12 @@
         <Setter Property="FontSize" Value="{StaticResource ExtraLargeFontSize}" />
         <Setter Property="FontFamily" Value="{StaticResource OpenSansExtraBold}"/>
         <Setter Property="Foreground" Value="{StaticResource MainTextColor}"/>
+        <Setter Property="Padding" Value="5px"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="AcceptsReturn" Value="True"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
     </Style>
 
     <!-- Text block basic styles. -->

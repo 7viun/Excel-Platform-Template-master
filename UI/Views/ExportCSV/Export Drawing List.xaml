@@ -3,7 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d"
+             x:Name="Mainwindow"
+             Focusable="True"
              Width="1024" MinWidth="1024" Height="768" MinHeight="768" ResizeMode="CanResizeWithGrip"
              WindowStartupLocation="CenterScreen"
              Title="Export Drawing List" 
@@ -18,7 +21,13 @@
             </Style>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid Margin="0">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseDown">
+            <i:InvokeCommandAction Command="{Binding MouseDownCommand}"
+                                       CommandParameter="{Binding .,ElementName=Mainwindow}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid Margin="0" x:Name="MainGrid" Focusable="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
@@ -34,18 +43,45 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0" BorderThickness="1,1,1,1">
-                <TextBlock>asdasd</TextBlock>
+                <Button Background="Transparent">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image x:Name="companyimg"
+                                   Source="/Resources;component/Images/Icons/Logo.Artelia.png"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
             </Border>
             <Border Grid.Column="1" BorderThickness="0,1,0,1">
                 <TextBox Text="{Binding ProjectName}"
                          Style="{StaticResource BoldTextBoxStyle}"></TextBox>
             </Border>
             <Border Grid.Column="2" BorderThickness="1,1,1,1">
-                <TextBlock>asdasd</TextBlock>
+                <Button x:Name="Button1">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Image x:Name="clientimg"
+                                   Source="/Resources;component/Images/Icons/Logo.Artelia.png">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseDown">
+                                        <i:InvokeCommandAction Command="{Binding ChangeImageCommand}"
+                                       CommandParameter="{Binding .,ElementName=clientimg}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Image>
+                            
+                            <!--<ControlTemplate.Triggers>
+                                <Trigger Property="IsPressed" Value="true">
+                                    <Setter TargetName="clientimg" Property="Source" Value="/Resources;component/Images/Icons/sky.jpg"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>-->
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
             </Border>
         </Grid>
         <Grid Grid.Row="1" Height="50" Margin="20,0,20,0">
-            <Border BorderThickness="1">
+            <Border BorderThickness="1,0,1,0">
                 <TextBox TextAlignment="Center"
                              Style="{StaticResource BoldTextBoxStyle}"
                              Text="{Binding Location}"></TextBox>
@@ -76,7 +112,9 @@
         </Grid>
         <Grid Grid.Row="5">
             <StackPanel>
-                <Button Command="{Binding SaveCommand}">Save</Button>
+                <Button Command="{Binding SaveCommand}">
+                    Save
+                </Button>
                 <Button Command="{Binding LoadCommand}">Load</Button>
             </StackPanel>
         </Grid>
