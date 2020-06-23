@@ -157,16 +157,14 @@ namespace UI.ViewModels
         private string _imagelink;
         public string ImageLink
         {
-            get
-            {
-                return _imagelink;
-            }
+            get { return _imagelink; }
             set
             {
                 _imagelink = value;
                 OnPropertyChanged();
 
             }
+
         }
 
         #endregion
@@ -196,6 +194,7 @@ namespace UI.ViewModels
             _app = _exportCSVCommand.app;
             _doc = _exportCSVCommand.doc;
             _projectname = "Amazon";
+            SetImage();
             this.ChangeImageCommand = new ActionCommand(this.ChangeImage);
             this.MouseDownCommand = new ActionCommand(this.SetGridFocus);
             LoadCommand = new RelayCommand(GetWebPage);
@@ -486,19 +485,24 @@ namespace UI.ViewModels
         }
         #endregion
         #region Change Image Source private method
+        private void SetImage()
+        {
+            //BitmapImage bitmapImage = new BitmapImage();
+            //bitmapImage.BeginInit();
+            //bitmapImage.UriSource = new Uri(@"/Resources; component/Images/Icons/sky.jpg", UriKind.Relative);
+            //bitmapImage.EndInit();
+            ImageLink = @"D:\7 - PERSONAL\Downloads\IMG_4694 (1).JPG";
+        }
         private void ChangeImage(object obj)
         {
-            //_imagelink = "/Resources;component/Images/Icons/sky.jpg";
             var img = (Image)obj;
-            BitmapImage bitmapImage = new BitmapImage();
-            bitmapImage.UriSource = new Uri(@"../Resources; component/Images/Icons/sky.jpg");
-            img.Source = bitmapImage;
-            MessageBox.Show(bitmapImage.ToString());
-            //var img = (Image)obj;
-            //OpenFile();
+            ImageLink = @"D:\7 - PERSONAL\Downloads\IMG_4694.JPG";
+            MessageBox.Show(img.ToString());
             //BitmapImage bitmapImage = new BitmapImage();
-            //bitmapImage.UriSource = new Uri(@"/Resources; component/Images/Icons/LookUpNoteblock.ico");
-            //img.Source = bitmapImage;
+            //bitmapImage.BeginInit();
+            //bitmapImage.UriSource = new Uri(@"D:\7 - PERSONAL\Downloads\IMG_4694.JPG", UriKind.Absolute);
+            //bitmapImage.EndInit();
+            //img = bitmapImage.UriSource;
         }
         #endregion
         #region Private Save Command

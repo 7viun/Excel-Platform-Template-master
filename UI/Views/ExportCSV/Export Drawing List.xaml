@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:local="clr-namespace:UI.ViewModels.Base"
              mc:Ignorable="d"
              x:Name="Mainwindow"
              Focusable="True"
@@ -19,6 +20,7 @@
             <Style TargetType="Border">
                 <Setter Property="BorderBrush" Value="{StaticResource MainTextColor}"/>
             </Style>
+            <local:ImageSourceConverter x:Key="ImageSourceConverter"/>
         </ResourceDictionary>
     </Window.Resources>
     <i:Interaction.Triggers>
@@ -43,41 +45,22 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0" BorderThickness="1,1,1,1">
-                <Button Background="Transparent">
-                    <Button.Template>
-                        <ControlTemplate>
-                            <Image x:Name="companyimg"
-                                   Source="/Resources;component/Images/Icons/Logo.Artelia.png"/>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+                <Image Source="{Binding ImageLink,Converter={StaticResource ImageSourceConverter}}"/>
             </Border>
             <Border Grid.Column="1" BorderThickness="0,1,0,1">
                 <TextBox Text="{Binding ProjectName}"
                          Style="{StaticResource BoldTextBoxStyle}"></TextBox>
             </Border>
             <Border Grid.Column="2" BorderThickness="1,1,1,1">
-                <Button x:Name="Button1">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Image x:Name="clientimg"
-                                   Source="/Resources;component/Images/Icons/Logo.Artelia.png">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="MouseDown">
-                                        <i:InvokeCommandAction Command="{Binding ChangeImageCommand}"
+                <Image Source="{Binding ImageLink,Converter={StaticResource ImageSourceConverter},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                       x:Name="clientimg">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDown">
+                            <i:InvokeCommandAction Command="{Binding ChangeImageCommand}"
                                        CommandParameter="{Binding .,ElementName=clientimg}"/>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                            </Image>
-                            
-                            <!--<ControlTemplate.Triggers>
-                                <Trigger Property="IsPressed" Value="true">
-                                    <Setter TargetName="clientimg" Property="Source" Value="/Resources;component/Images/Icons/sky.jpg"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>-->
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Image>
             </Border>
         </Grid>
         <Grid Grid.Row="1" Height="50" Margin="20,0,20,0">

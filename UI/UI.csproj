@@ -69,7 +69,6 @@
     </Reference>
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPI">
       <HintPath>C:\Program Files\Autodesk\Revit 2018\RevitAPI.dll</HintPath>
@@ -117,6 +116,7 @@
     <Compile Include="Revit\CoreAssembly.cs" />
     <Compile Include="Utils\AviunUtils.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
+    <Compile Include="ViewModels\Base\ImageSourceConverter.cs" />
     <Compile Include="ViewModels\ExportCSVViewModel.cs" />
     <Compile Include="Views\ExportCSV\Export Drawing List.xaml.cs">
       <DependentUpon>Export Drawing List.xaml</DependentUpon>
