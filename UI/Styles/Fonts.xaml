@@ -9,8 +9,8 @@
     <!--Font Size-->
     <System:Double x:Key="SmallFontSize">9</System:Double>
     <System:Double x:Key="RegularFontSize">12</System:Double>
-    <System:Double x:Key="LargeFontSize">14</System:Double>
-    <System:Double x:Key="ExtraLargeFontSize">25</System:Double>
+    <System:Double x:Key="LargeFontSize">16</System:Double>
+    <System:Double x:Key="ExtraLargeFontSize">20</System:Double>
     <!--Font Style-->
 
     <FontFamily x:Key="OpenSansLite">/Resources;Component/Fonts/OpenSans/#Open Sans Light</FontFamily>
@@ -28,8 +28,32 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="AcceptsReturn" Value="True"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Background" Value="{StaticResource SecondTextColor}"/>
     </Style>
-
+    <!-- Text box light Style. -->
+    <Style TargetType="{x:Type TextBox}" x:Key="LightTextBoxStyle">
+        <Setter Property="FontSize" Value="{StaticResource LargeFontSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource OpenSans}"/>
+        <Setter Property="Foreground" Value="{StaticResource MainTextColor}"/>
+        <Setter Property="Padding" Value="5px"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="AcceptsReturn" Value="False"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+    </Style>
+    <!-- Text box normal Style. -->
+    <Style TargetType="{x:Type TextBox}" x:Key="NormalTextBoxStyle">
+        <Setter Property="FontSize" Value="{StaticResource RegularFontSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource OpenSans}"/>
+        <Setter Property="Foreground" Value="{StaticResource MainTextColor}"/>
+        <Setter Property="Padding" Value="1.5px"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="TextAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="AcceptsReturn" Value="True"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+    </Style>
     <!-- Text block basic styles. -->
     <Style TargetType="{x:Type TextBlock}" x:Key="BaseTextBlockStyle">
         <Setter Property="FontSize" Value="{StaticResource LargeFontSize}" />

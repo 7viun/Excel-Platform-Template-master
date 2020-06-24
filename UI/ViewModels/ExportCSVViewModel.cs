@@ -25,6 +25,7 @@ using Microsoft.Win32;
 using System.Windows.Controls;
 using Microsoft.Xaml.Behaviors.Core;
 using System.Windows.Media.Imaging;
+using System.IO;
 
 namespace UI.ViewModels
 {
@@ -154,13 +155,80 @@ namespace UI.ViewModels
 
             }
         }
-        private string _imagelink;
-        public string ImageLink
+        private string _title;
+        public string Title
         {
-            get { return _imagelink; }
+            get
+            {
+                return _title;
+            }
             set
             {
-                _imagelink = value;
+                _title = value;
+                OnPropertyChanged();
+
+            }
+        }
+        private string _phase;
+        public string Phase
+        {
+            get
+            {
+                return _phase;
+            }
+            set
+            {
+                _phase = value;
+                OnPropertyChanged();
+
+            }
+        }
+        private string _revision;
+        public string Revision
+        {
+            get
+            {
+                return _revision;
+            }
+            set
+            {
+                _revision = value;
+                OnPropertyChanged();
+
+            }
+        }
+        private string _issue;
+        public string Issue
+        {
+            get
+            {
+                return _issue;
+            }
+            set
+            {
+                _issue = value;
+                OnPropertyChanged();
+
+            }
+        }
+        private string _cltimg;
+        public string CltImg
+        {
+            get { return _cltimg; }
+            set
+            {
+                _cltimg = value;
+                OnPropertyChanged();
+
+            }
+        }
+        private string _slfimg;
+        public string SlfImg
+        {
+            get { return _slfimg; }
+            set
+            {
+                _slfimg = value;
                 OnPropertyChanged();
 
             }
@@ -193,15 +261,16 @@ namespace UI.ViewModels
             _uidoc = _exportCSVCommand.uidoc;
             _app = _exportCSVCommand.app;
             _doc = _exportCSVCommand.doc;
-            _projectname = "Amazon";
+            _projectname = "Project Name";
+            _location = "Location of Project";
+            _title = "Drawing List";
+            _filepath = "Please click \"Browse\"";
             SetImage();
             this.ChangeImageCommand = new ActionCommand(this.ChangeImage);
             this.MouseDownCommand = new ActionCommand(this.SetGridFocus);
             LoadCommand = new RelayCommand(GetWebPage);
             SaveCommand = new RelayCommand(SaveToART);
             ExportCbndBtnCommand = new RelayCommand(ExportCbnButton, CanClickButton);
-            FindPathCommand = new RelayCommand(OpenFile);
-            _filepath = "Please click \"Browse\" to choose Export Directory";
             GetAllViewSchedule();
         }
 
@@ -449,12 +518,12 @@ namespace UI.ViewModels
             }
             progress.Report(100 / countvar);
         }
-        private void OpenFile()
+        private void OpenFile(string ext,string filter)
         {
             var dialog = new OpenFileDialog();
             dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            dialog.DefaultExt = ".ART";
-            dialog.Filter = "Artelia Revision File (*.ART)|*.ART";
+            dialog.DefaultExt =ext;
+            dialog.Filter = filter;
             if (dialog.ShowDialog()==true)
             {
                 string path = dialog.FileName;
@@ -487,22 +556,26 @@ namespace UI.ViewModels
         #region Change Image Source private method
         private void SetImage()
         {
-            //BitmapImage bitmapImage = new BitmapImage();
-            //bitmapImage.BeginInit();
-            //bitmapImage.UriSource = new Uri(@"/Resources; component/Images/Icons/sky.jpg", UriKind.Relative);
-            //bitmapImage.EndInit();
-            ImageLink = @"D:\7 - PERSONAL\Downloads\IMG_4694 (1).JPG";
+            CltImg = @"/Resources;component/Images/Icons/Logo.Artelia.png";
+            SlfImg = @"/Resources;component/Images/Icons/Logo.Artelia.png";
         }
         private void ChangeImage(object obj)
         {
+            FilePath = null;
             var img = (Image)obj;
-            ImageLink = @"D:\7 - PERSONAL\Downloads\IMG_4694.JPG";
-            MessageBox.Show(img.ToString());
-            //BitmapImage bitmapImage = new BitmapImage();
-            //bitmapImage.BeginInit();
-            //bitmapImage.UriSource = new Uri(@"D:\7 - PERSONAL\Downloads\IMG_4694.JPG", UriKind.Absolute);
-            //bitmapImage.EndInit();
-            //img = bitmapImage.UriSource;
+            OpenFile(".jpg", "Image File(*.jpg)|*.jpg|Image File(*.png)|*.png|All Files(*.*)|*.*");
+            if(FilePath!=null)
+            {
+                if (img.Name == "clientimg")
+                {
+                    CltImg = FilePath;
+                }
+                else
+                {
+                    SlfImg = FilePath;
+                }
+            }
+            MessageBox.Show(FilePath);
         }
         #endregion
         #region Private Save Command
@@ -518,13 +591,15 @@ namespace UI.ViewModels
                 writer.WriteStartDocument();
                 writer.WriteStartElement("Phases");
                     writer.WriteStartElement("Phase");
-                    writer.WriteAttributeString("Name", "Basic Design");
+                    writer.WriteAttributeString("Name", Phase);
                         writer.WriteStartElement("Revision");
-                            writer.WriteElementString("ID", "A");
-                            writer.WriteElementString("Issue", "27/02/2012");
-                            writer.WriteElementString("ProjectName", _projectname);
-                            writer.WriteElementString("Location", _location);
-                            writer.WriteElementString("Title", _doctype);
+                            writer.WriteElementString("ID", Revision);
+                            writer.WriteElementString("Issue", Issue);
+                            writer.WriteElementString("ProjectName", ProjectName);
+                            writer.WriteElementString("Location", Location);
+                            writer.WriteElementString("Title", DocType);
+                            writer.WriteElementString("CltImg", CltImg);
+                            writer.WriteElementString("SlfImg", SlfImg);
                         writer.WriteEndElement();
                     writer.WriteEndElement();
                 writer.WriteEndElement();
@@ -537,7 +612,7 @@ namespace UI.ViewModels
         {
             /// This Part is to Get Data from an online source (because of github pages, we have to set security protocol to TLS12)
             //string address = "https://7viun.github.io/Data.xml";
-            OpenFile();
+            OpenFile(".ART","Artelia Revision File (*.ART)|*.ART");
             string xmlStr = _filepath;
             //using(var wc =new WebClient())
             //{
