@@ -37,6 +37,7 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Height="75" Margin="20,20,20,0">
             <Grid.ColumnDefinitions>
@@ -127,19 +128,19 @@
             </Border>
         </Grid>
         <Grid Grid.Row="5" Margin="20,0,20,20" HorizontalAlignment="Stretch" x:Name="grid5">
+            <DataGrid ItemsSource="{Binding }">
+
+            </DataGrid>
+        </Grid>
+        <Grid Grid.Row="6" Margin="20,0,20,20">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition x:Name="column1" Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <DockPanel Grid.ColumnSpan="2">
-                <DataGrid ItemsSource="{Binding }" DockPanel.Dock="top">
-
-                </DataGrid>
-                <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Orientation="Horizontal" x:Name="stack">
-                    <Button Command="{Binding SaveCommand}" MinWidth="{Binding ActualWidth,ElementName=column1}">Save</Button>
-                    <Button Command="{Binding LoadCommand}" MinWidth="{Binding ActualWidth,ElementName=column1}">Load</Button>
-                </StackPanel>
-            </DockPanel>
+            <Button Style="{StaticResource MainButton}" Grid.Column="0" Command="{Binding LoadCommand}">Generate Sheet List</Button>
+            <Button Style="{StaticResource MainButton}" Grid.Column="1" Command="{Binding SaveCommand}">Save</Button>
+            <Button Style="{StaticResource MainButton}" Grid.Column="2" Command="{Binding LoadCommand}">Load</Button>
         </Grid>
     </Grid>
 </Window>
